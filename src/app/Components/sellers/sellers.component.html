@@ -1,0 +1,255 @@
+<div class="container w-50">
+  <form
+    (ngSubmit)="addSeller(formval.value)"
+    #formval="ngForm"
+    [formGroup]="usrFormGroup"
+    class="m-2"
+  >
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="mb-3 form-group">
+          <label for="usrName" class="form-label">Full Name</label>
+
+          <input
+            [(ngModel)]="user"
+            type="text"
+            class="form-control"
+            name="usrName"
+            id="usrName"
+            formControlName="fullName"
+            [class.is-valid]="allInput.fullName?.valid"
+            [class.is-invalid]="
+              allInput.fullName?.touched && allInput.fullName?.invalid
+            "
+          />
+
+          <div
+            class="alert alert-warning"
+            [hidden]="allInput.fullName?.valid || allInput.fullName?.untouched"
+          >
+            <small *ngIf="allInput.fullName?.errors?.['required']">
+              Full Name is required
+            </small>
+            <small *ngIf="allInput.fullName?.errors?.['minlength']">
+              Full Name must be at least 3 letters
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="usrEmail" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="usrEmail"
+            id="usrEmail"
+            formControlName="email"
+            [class.is-valid]="allInput.email?.valid"
+            [class.is-invalid]="
+              allInput.email?.touched && allInput.email?.invalid
+            "
+          />
+          <div
+            class="alert alert-warning"
+            [hidden]="allInput.email?.valid || allInput.email?.untouched"
+          >
+            <small *ngIf="allInput.email?.errors?.['required']">
+              Email is required
+            </small>
+            <small *ngIf="allInput.email?.errors?.['pattern']">
+              Email should match the pattern
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="usrMobile">Mobile number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="usrMobile"
+            id="usrMobile"
+            formControlName="mobileNo"
+            [class.is-valid]="allInput.mobileNo?.valid"
+            [class.is-invalid]="
+              allInput.mobileNo?.touched && allInput.mobileNo?.invalid
+            "
+          />
+          <div
+            class="alert alert-warning"
+            [hidden]="allInput.mobileNo?.valid || allInput.mobileNo?.untouched"
+          >
+            <small *ngIf="allInput.mobileNo?.errors?.['required']">
+              Mobile number is required
+            </small>
+            <small
+              *ngIf="allInput.mobileNo?.errors?.['pattern']"
+            >
+              Mobile number should match the pattern starts with 01 and 11 numbers
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="mb-3 ms-2">
+          <label for="usrCity" class="form-label">city address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="usrCity"
+            id="usrCity"
+            formControlName="address"
+            [class.is-valid]="allInput.address?.valid"
+            [class.is-invalid]="
+              allInput.address?.touched && allInput.address?.invalid
+            "
+          />
+          <div
+            class="alert alert-warning"
+            [hidden]="allInput.address?.valid || allInput.address?.untouched"
+          >
+            <small *ngIf="allInput.address?.errors?.['required']">
+              Address is required
+            </small>
+            <small *ngIf="allInput.address?.errors?.['minLength']">
+              Address should be at least 4 chra
+            </small>
+          </div>
+        </div>
+        <div class="mb-2 ms-2">
+          <label for="usrProduct" class="form-label">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="usrProduct"
+            id="usrProduct"
+            formControlName="productName"
+            [class.is-valid]="allInput.productName?.valid"
+            [class.is-invalid]="
+              allInput.productName?.touched && allInput.productName?.invalid
+            "
+          />
+          <div
+          class="alert alert-warning"
+          [hidden]="allInput.productName?.valid || allInput.productName?.untouched"
+        >
+          <small *ngIf="allInput.productName?.errors?.['required']">
+            productName is required
+          </small>
+          <small *ngIf="allInput.productName?.errors?.['minLength']">
+            productName should be at least 3 chra
+          </small>
+        </div>
+        </div>
+        <div class="mb-3 ms-2">
+          <label for="usrage" class="form-label">Age</label>
+          <input
+            type="number"
+            class="form-control"
+            name="usrage"
+            id="usrage"
+            formControlName="age"
+            [class.is-valid]="allInput.age?.valid"
+            [class.is-invalid]="
+              allInput.age?.touched && allInput.age?.invalid
+            "
+          />
+          <div
+          class="alert alert-warning"
+          [hidden]="allInput.age?.valid || allInput.age?.untouched"
+        >
+          <small *ngIf="allInput.age?.errors?.['required']">
+            age is required
+          </small>
+          <small *ngIf="allInput.age?.errors?.['minLength']">
+            age should be at least 2 numbers
+          </small>
+        </div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <button
+          class="d-flex align-items-center"
+          type="submit"
+          class="btn add-btn"
+        >
+          Add Seller <mat-icon>add_circle</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--MDB Tables-->
+<div class="container mt-4">
+  <div class="card mb-4">
+    <div class="card-body">
+      <!-- Grid row -->
+      <div class="row d-flex align-items-center justify-content-between">
+        <!-- Grid column -->
+        <div class="col-md-6 search-div">
+          <div class="input-group md-form form-sm form-2 py-3 w-50">
+            <input
+              class="form-control my-0 py-1 pl-3"
+              type="text"
+              placeholder="Search something here..."
+              aria-label="Search"
+              [(ngModel)]="searchText"
+            />
+            <span class="search-icon" id="basic-addon1">
+              <mat-icon>search</mat-icon></span
+            >
+          </div>
+        </div>
+
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+      <!--Table-->
+      <table class="table table-striped">
+        <!--Table head-->
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>id</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Product Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Mobile</th>
+            <th>Remove</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody>
+          <tr
+            *ngFor="
+              let seller of sellersList | search: searchText;
+              let i = index
+            "
+          >
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ seller.id }}</td>
+            <td>{{ seller.fullName }}</td>
+            <td>{{ seller.email }}</td>
+            <td>{{ seller.productName }}</td>
+            <td>{{ seller.age }}</td>
+            <td>{{ seller.address }}</td>
+            <td>{{ seller.mobileNo }}</td>
+            <td (click)="deleteSeller(seller.id)" class="del-icon">
+              <mat-icon>delete_forever</mat-icon>
+            </td>
+            <td (click)="sendId(seller.id)" class="del-icon">
+              <mat-icon>create</mat-icon>
+            </td>
+          </tr>
+        </tbody>
+        <!--Table body-->
+      </table>
+      <!--Table-->
+    </div>
+  </div>
+</div>
